@@ -1,26 +1,16 @@
-import styled from "styled-components";
+import { useHistory } from "react-router";
+import { PageContainer } from "../components/containers/PageContainer";
+import { Button } from "../components/buttons/Button";
 
 function HomePage() {
+    const history = useHistory();
+
     return (
         <PageContainer>
-            <Button>Enviar provas</Button>
-            <Button>Baixar provas</Button>
+            <Button onClick={() => history.push("/send")}>Enviar provas</Button>
+            <Button onClick={() => history.push("/view")}>Baixar provas</Button>
         </PageContainer>
     );
 }
 
 export default HomePage;
-
-const PageContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-`;
-
-const Button = styled.button`
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
-`;

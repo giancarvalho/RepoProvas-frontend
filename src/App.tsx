@@ -1,14 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./views/HomePage";
 import "./assets/css/global.css";
+import HomePage from "./views/HomePage";
+import ViewExams from "./views/ViewExams/View";
+import ViewTeachers from "./views/ViewExams/ViewTeachers";
 
 function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/">
+                <Route path="/" exact>
                     <HomePage />
+                </Route>
+                <Route path="/view" exact>
+                    <ViewExams />
+                </Route>
+                <Route path="/view/teachers" exact>
+                    <ViewTeachers />
                 </Route>
             </Switch>
         </Router>
