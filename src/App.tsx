@@ -1,7 +1,18 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import HomePage from "./views/HomePage";
+import "./assets/css/global.css";
 
 function App() {
-    return <div className="App">Ola, como vai?</div>;
+    return (
+        <Router>
+            <Switch>
+                <Route path="/">
+                    <HomePage />
+                </Route>
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;
