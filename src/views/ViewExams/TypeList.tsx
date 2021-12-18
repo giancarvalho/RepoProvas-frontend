@@ -10,7 +10,7 @@ interface Props {
 function Type({ typeName, examsArray, subject }: Props) {
     return (
         <TypeContainer>
-            <h1>{typeName}</h1>
+            <h2>{typeName}</h2>
             <div>
                 {examsArray.map((exam: Exam) => (
                     <ExamContainer

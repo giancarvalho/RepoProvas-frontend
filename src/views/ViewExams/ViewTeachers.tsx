@@ -22,6 +22,14 @@ function ViewTeachers() {
             .catch((error) => console.error(error.response));
     }, []);
 
+    function goToTeacherPage(teacherId: number, examsRegistered: number) {
+        if (examsRegistered > 0) {
+            return history.push(`${history.location.pathname}/${teacherId}`);
+        }
+
+        alert("O professor escolhido nao tem provas cadastradas no momento");
+    }
+
     return (
         <PageContainer>
             <InnerWrapper>
@@ -31,8 +39,9 @@ function ViewTeachers() {
                         <li
                             key={teacher.id}
                             onClick={() =>
-                                history.push(
-                                    `${history.location.pathname}/${teacher.id}`
+                                goToTeacherPage(
+                                    teacher.id,
+                                    teacher.examsRegistered
                                 )
                             }
                         >
