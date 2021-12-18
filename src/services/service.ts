@@ -4,4 +4,8 @@ function getTeachers() {
     return axiosBase.get("/teachers");
 }
 
-export { getTeachers };
+function getExamsByTeacher(teacherId: string) {
+    return axiosBase.get(`/exams/teacher/${teacherId}`);
+}
+
+export { getTeachers, getExamsByTeacher };

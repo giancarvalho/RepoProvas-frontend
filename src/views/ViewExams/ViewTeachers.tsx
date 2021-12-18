@@ -29,6 +29,7 @@ function ViewTeachers() {
                 <TeachersList>
                     {teachersList.map((teacher: Teacher) => (
                         <li
+                            key={teacher.id}
                             onClick={() =>
                                 history.push(
                                     `${history.location.pathname}/${teacher.id}`
