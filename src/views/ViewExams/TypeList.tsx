@@ -20,8 +20,12 @@ function Type({ typeName, examsArray, subject }: Props) {
                         <ul>
                             <li>Prova: {exam.name}</li>
                             <li>Ano: {exam.year} </li>
-                            <li>Semestre: {exam.semester} </li>
-                            {subject && <li>Materia: {exam.subject} </li>}
+
+                            {subject ? (
+                                <li>Materia: {exam.subject} </li>
+                            ) : (
+                                <li>Professor: {exam.teacher} </li>
+                            )}
                         </ul>
                     </ExamContainer>
                 ))}

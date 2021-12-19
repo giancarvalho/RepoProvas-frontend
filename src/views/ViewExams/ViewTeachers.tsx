@@ -14,8 +14,6 @@ function ViewTeachers() {
     const history = useHistory();
     const [teachersList, setTeachersList] = useState([]);
 
-    console.log(history.location.pathname);
-
     useEffect(() => {
         getTeachers()
             .then((response) => setTeachersList(response.data))

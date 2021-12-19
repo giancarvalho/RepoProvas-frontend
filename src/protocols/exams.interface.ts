@@ -4,6 +4,7 @@ export interface Exam {
     type: string;
     semester: string;
     year: number;
-    subject: string;
+    subject?: string;
+    teacher?: string;
     link: string;
 }

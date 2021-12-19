@@ -8,8 +8,12 @@ function getSubjects() {
     return axiosBase.get("/subjects");
 }
 
+function getExamsBySubject(subjectId: string) {
+    return axiosBase.get(`/subjects/${subjectId}`);
+}
+
 function getExamsByTeacher(teacherId: string) {
     return axiosBase.get(`/exams/teacher/${teacherId}`);
 }
 
-export { getTeachers, getExamsByTeacher, getSubjects };
+export { getTeachers, getExamsByTeacher, getSubjects, getExamsBySubject };

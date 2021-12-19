@@ -41,7 +41,6 @@ function ViewTeacher() {
             .catch((error) => console.error(error.response.data));
     }, [teacher.teacherId]);
 
-    console.log(exams);
     return (
         <PageContainer>
             <InnerContainer>

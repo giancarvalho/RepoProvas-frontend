@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getExamsByTeacher } from "../../services/service";
+import { getExamsBySubject } from "../../services/service";
 import { PageContainer } from "../../components/containers/PageContainer";
 import Type from "./TypeList";
 import { Exam } from "../../protocols/exams.interface";
 import styled from "styled-components";
 
-interface TeacherId {
-    teacherId: string;
+interface SubjectId {
+    subjectId: string;
 }
 
 function ViewSubject() {
@@ -19,13 +19,13 @@ function ViewSubject() {
         others: [],
     };
 
-    const teacher: TeacherId = useParams();
+    const subject: SubjectId = useParams();
     const [exams, setExams] = useState<any>(examsByType);
-    const [teacherName, setTeacherName] = useState<string>("");
+    const [subjectName, setSubjectName] = useState<string>("");
 
     useEffect(() => {
         const examsAux = { ...examsByType };
-        getExamsByTeacher(teacher.teacherId)
+        getExamsBySubject(subject.subjectId)
             .then((response) => {
                 response.data.exams.forEach((exam: Exam) => {
                     if (exam.type === "P1") examsAux.P1.push(exam);
@@ -34,38 +34,34 @@ function ViewSubject() {
                     else if (exam.type === "2CH") examsAux.ch.push(exam);
                     else examsAux.others.push(exam);
                 });
-                setTeacherName(response.data.name);
+                setSubjectName(response.data.name);
+                console.log(response.data);
                 setExams({ ...examsAux });
             })
 
             .catch((error) => console.error(error.response.data));
-    }, [teacher.teacherId]);
+    }, [subject.subjectId]);
 
-    console.log(exams);
     return (
         <PageContainer>
             <InnerContainer>
-                <h1>Provas de {teacherName}</h1>
+                <h1>Provas de {subjectName}</h1>
                 <ExamSection>
                     {exams.P1.length > 0 && (
-                        <Type typeName="P1" examsArray={exams.P1} subject />
+                        <Type typeName="P1" examsArray={exams.P1} />
                     )}
                     {exams.P2.length > 0 && (
-                        <Type typeName="P2" examsArray={exams.P2} subject />
+                        <Type typeName="P2" examsArray={exams.P2} />
                     )}
 
                     {exams.P3.length > 0 && (
-                        <Type typeName="P3" examsArray={exams.P3} subject />
+                        <Type typeName="P3" examsArray={exams.P3} />
                     )}
                     {exams.ch.length > 0 && (
-                        <Type typeName="2ch" examsArray={exams.ch} subject />
+                        <Type typeName="2ch" examsArray={exams.ch} />
                     )}
                     {exams.others.length > 0 && (
-                        <Type
-                            typeName="Outras"
-                            examsArray={exams.others}
-                            subject
-                        />
+                        <Type typeName="Outras" examsArray={exams.others} />
                     )}
                 </ExamSection>
             </InnerContainer>

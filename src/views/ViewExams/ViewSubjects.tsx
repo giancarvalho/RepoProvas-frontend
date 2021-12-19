@@ -87,7 +87,6 @@ function ViewSubjects() {
             .catch((error) => console.error(error.response.data));
     }, []);
 
-    console.log(subjectsList);
     return (
         <PageContainer>
             {" "}
