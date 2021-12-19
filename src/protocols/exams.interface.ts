@@ -8,3 +8,12 @@ export interface Exam {
     teacher?: string;
     link: string;
 }
+
+export interface ExamSubmit {
+    name: string;
+    link: string;
+    typeId: number;
+    yearId: number;
+    subjectId: number;
+    teacherId: number;
+}

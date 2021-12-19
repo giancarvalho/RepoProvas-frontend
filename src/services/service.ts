@@ -1,3 +1,4 @@
+import { ExamSubmit } from "../protocols/exams.interface";
 import axiosBase from "./AxiosBase";
 
 function getTeachers() {
@@ -20,10 +21,15 @@ function getExamsByTeacher(teacherId: string) {
     return axiosBase.get(`/exams/teacher/${teacherId}`);
 }
 
+function submitExam(body: ExamSubmit) {
+    return axiosBase.post("/exams", body);
+}
+
 export {
     getTeachers,
     getExamsByTeacher,
     getSubjects,
     getExamsBySubject,
     getFormInfo,
+    submitExam,
 };

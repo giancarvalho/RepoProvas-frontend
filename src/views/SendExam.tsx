@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { PageContainer } from "../components/containers/PageContainer";
-import { getFormInfo } from "../services/service";
+import { getFormInfo, submitExam } from "../services/service";
 
 function SendExam() {
+    const history = useHistory();
     const [fillFormData, setFillFormData] = useState({
         subjects: [],
         types: [],
@@ -43,7 +45,9 @@ function SendExam() {
     function postExam(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        console.log(formData);
+        submitExam(formData)
+            .then(() => history.push("/"))
+            .catch((error) => console.error(error.response));
     }
 
     return (
