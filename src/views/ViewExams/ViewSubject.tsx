@@ -10,8 +10,8 @@ interface TeacherId {
     teacherId: string;
 }
 
-function ViewTeacher() {
-    const examsTypes: any = {
+function ViewSubject() {
+    const examsByType: any = {
         P1: [],
         P2: [],
         P3: [],
@@ -20,11 +20,11 @@ function ViewTeacher() {
     };
 
     const teacher: TeacherId = useParams();
-    const [exams, setExams] = useState<any>(examsTypes);
+    const [exams, setExams] = useState<any>(examsByType);
     const [teacherName, setTeacherName] = useState<string>("");
 
     useEffect(() => {
-        const examsAux = { ...examsTypes };
+        const examsAux = { ...examsByType };
         getExamsByTeacher(teacher.teacherId)
             .then((response) => {
                 response.data.exams.forEach((exam: Exam) => {
@@ -73,7 +73,7 @@ function ViewTeacher() {
     );
 }
 
-export default ViewTeacher;
+export default ViewSubject;
 
 const InnerContainer = styled.div`
     display: flex;
