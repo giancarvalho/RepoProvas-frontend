@@ -7,6 +7,7 @@ import ViewTeachers from "./views/ViewExams/ViewTeachers";
 import ViewTeacher from "./views/ViewExams/ViewTeacher";
 import ViewSubjects from "./views/ViewExams/ViewSubjects";
 import ViewSubject from "./views/ViewExams/ViewSubject";
+import SendExam from "./views/SendExam";
 
 function App() {
     return (
@@ -14,6 +15,9 @@ function App() {
             <Switch>
                 <Route path="/" exact>
                     <HomePage />
+                </Route>
+                <Route path="/send" exact>
+                    <SendExam />
                 </Route>
                 <Route path="/view" exact>
                     <ViewExams />
