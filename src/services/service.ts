@@ -14,11 +14,11 @@ function getFormInfo() {
 }
 
 function getExamsBySubject(subjectId: string) {
-    return axiosBase.get(`/subjects/${subjectId}`);
+    return axiosBase.get(`/subjects/${subjectId}/exams`);
 }
 
 function getExamsByTeacher(teacherId: string) {
-    return axiosBase.get(`/exams/teacher/${teacherId}`);
+    return axiosBase.get(`/teachers/${teacherId}/exams`);
 }
 
 function submitExam(body: ExamSubmit) {
