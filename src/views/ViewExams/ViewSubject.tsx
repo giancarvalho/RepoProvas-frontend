@@ -24,7 +24,7 @@ function ViewSubject() {
     };
 
     const subject: SubjectId = useParams();
-    const [exams, setExams] = useState<any>(examsByType);
+    const [exams, setExams] = useState<ExamTypes>(examsByType);
     const [subjectName, setSubjectName] = useState<string>("");
 
     useEffect(() => {

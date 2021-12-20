@@ -4,6 +4,11 @@ import styled from "styled-components";
 import { PageContainer } from "../components/containers/PageContainer";
 import { getFormInfo, submitExam } from "../services/service";
 
+interface FormDetail {
+    id: number;
+    [key: string]: number | string;
+}
+
 function SendExam() {
     const history = useHistory();
     const [fillFormData, setFillFormData] = useState({
@@ -69,11 +74,13 @@ function SendExam() {
                             required
                         >
                             <option value="">Escolha uma materia</option>
-                            {fillFormData.subjects.map((subject: any) => (
-                                <option value={subject.id} key={subject.id}>
-                                    {subject.name}
-                                </option>
-                            ))}
+                            {fillFormData.subjects.map(
+                                (subject: FormDetail) => (
+                                    <option value={subject.id} key={subject.id}>
+                                        {subject.name}
+                                    </option>
+                                )
+                            )}
                         </select>
                     </label>
                     <label>
@@ -90,7 +97,7 @@ function SendExam() {
                             required
                         >
                             <option value="">Escolha um professor</option>
-                            {teachersList.map((teacher: any) => (
+                            {teachersList.map((teacher: FormDetail) => (
                                 <option value={teacher.id} key={teacher.id}>
                                     {teacher.name}
                                 </option>
@@ -110,7 +117,7 @@ function SendExam() {
                             required
                         >
                             <option value="">Escolha um tipo</option>
-                            {fillFormData.types.map((type: any) => (
+                            {fillFormData.types.map((type: FormDetail) => (
                                 <option value={type.id} key={type.id}>
                                     {type.name}
                                 </option>
@@ -131,7 +138,7 @@ function SendExam() {
                             required
                         >
                             <option value="">Escolha um ano</option>
-                            {fillFormData.years.map((year: any) => (
+                            {fillFormData.years.map((year: FormDetail) => (
                                 <option value={year.id} key={year.id}>
                                     {year.year}
                                 </option>

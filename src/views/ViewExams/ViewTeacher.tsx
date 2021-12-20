@@ -15,16 +15,16 @@ interface TeacherId {
 }
 
 function ViewTeacher() {
-    const examsTypes: any = {
+    const examsTypes: ExamTypes = {
         P1: [],
         P2: [],
         P3: [],
         ch: [],
         others: [],
-    } as ExamTypes;
+    };
 
     const teacher: TeacherId = useParams();
-    const [exams, setExams] = useState<any>(examsTypes);
+    const [exams, setExams] = useState<ExamTypes>(examsTypes);
     const [teacherName, setTeacherName] = useState<string>("");
 
     useEffect(() => {
