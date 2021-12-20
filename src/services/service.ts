@@ -1,3 +1,4 @@
+import { ExamSubmit } from "../protocols/exams.interface";
 import axiosBase from "./AxiosBase";
 
 function getTeachers() {
@@ -8,12 +9,27 @@ function getSubjects() {
     return axiosBase.get("/subjects");
 }
 
+function getFormInfo() {
+    return axiosBase.get("/form");
+}
+
 function getExamsBySubject(subjectId: string) {
-    return axiosBase.get(`/subjects/${subjectId}`);
+    return axiosBase.get(`/subjects/${subjectId}/exams`);
 }
 
 function getExamsByTeacher(teacherId: string) {
-    return axiosBase.get(`/exams/teacher/${teacherId}`);
+    return axiosBase.get(`/teachers/${teacherId}/exams`);
 }
 
-export { getTeachers, getExamsByTeacher, getSubjects, getExamsBySubject };
+function submitExam(body: ExamSubmit) {
+    return axiosBase.post("/exams", body);
+}
+
+export {
+    getTeachers,
+    getExamsByTeacher,
+    getSubjects,
+    getExamsBySubject,
+    getFormInfo,
+    submitExam,
+};

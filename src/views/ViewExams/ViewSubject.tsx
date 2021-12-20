@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getExamsBySubject } from "../../services/service";
-import { PageContainer } from "../../components/containers/PageContainer";
+import {
+    InnerContainer,
+    PageContainer,
+} from "../../components/containers/PageContainer";
 import Type from "./TypeList";
 import { Exam } from "../../protocols/exams.interface";
-import styled from "styled-components";
+import { ExamTypes } from "../../protocols/exams.interface";
+import { ExamSection } from "../../components/containers/ExamSection";
 
 interface SubjectId {
     subjectId: string;
 }
 
 function ViewSubject() {
-    const examsByType: any = {
+    const examsByType: ExamTypes = {
         P1: [],
         P2: [],
         P3: [],
@@ -20,11 +24,11 @@ function ViewSubject() {
     };
 
     const subject: SubjectId = useParams();
-    const [exams, setExams] = useState<any>(examsByType);
+    const [exams, setExams] = useState<ExamTypes>(examsByType);
     const [subjectName, setSubjectName] = useState<string>("");
 
     useEffect(() => {
-        const examsAux = { ...examsByType };
+        const examsAux: ExamTypes = { ...examsByType };
         getExamsBySubject(subject.subjectId)
             .then((response) => {
                 response.data.exams.forEach((exam: Exam) => {
@@ -35,7 +39,7 @@ function ViewSubject() {
                     else examsAux.others.push(exam);
                 });
                 setSubjectName(response.data.name);
-                console.log(response.data);
+
                 setExams({ ...examsAux });
             })
 
@@ -70,13 +74,3 @@ function ViewSubject() {
 }
 
 export default ViewSubject;
-
-const InnerContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const ExamSection = styled.div`
-    display: flex;
-    justify-content: space-around;
-`;

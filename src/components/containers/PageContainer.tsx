@@ -8,4 +8,9 @@ const PageContainer = styled.div`
     height: 100%;
 `;
 
-export { PageContainer };
+const InnerContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export { PageContainer, InnerContainer };
