@@ -12,6 +12,7 @@ function SendExam() {
         years: [],
     });
     const [teachersList, setTeachersList] = useState([]);
+    const [formDisabled, setFormDisabled] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         link: "",
@@ -44,16 +45,22 @@ function SendExam() {
 
     function postExam(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        setFormDisabled(true);
 
         submitExam(formData)
             .then(() => history.push("/"))
-            .catch((error) => console.error(error.response));
+            .catch((error) => {
+                if (error.response.status === 409) {
+                    alert("Uma prova com o mesmo link ja existe.");
+                }
+                setFormDisabled(false);
+            });
     }
 
     return (
         <PageContainer>
             <form onSubmit={(e) => postExam(e)}>
-                <FormContainer>
+                <FormContainer disabled={formDisabled}>
                     <label>
                         Materia
                         <select
