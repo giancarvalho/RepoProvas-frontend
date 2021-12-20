@@ -54,6 +54,13 @@ function SubjectType({ typeList }: Props) {
     );
 }
 
+interface SubjectInfo {
+    name: string;
+    subjects: Subject[];
+}
+
+type SubjectsByPeriod = Record<string, SubjectInfo>;
+
 function ViewSubjects() {
     const subjectsModel = {
         one: { name: "1º Periodo", subjects: [] },
@@ -61,12 +68,14 @@ function ViewSubjects() {
         three: { name: "3º Periodo", subjects: [] },
         four: { name: "4º Periodo", subjects: [] },
         optionals: { name: "Eletivas", subjects: [] },
-    };
+    } as SubjectsByPeriod;
 
     const [subjectsList, setSubjectsList] = useState({ ...subjectsModel });
 
     useEffect(() => {
-        const subjectsAux: any = { ...subjectsModel };
+        const subjectsAux: SubjectsByPeriod = {
+            ...subjectsModel,
+        };
 
         getSubjects()
             .then((response) => {

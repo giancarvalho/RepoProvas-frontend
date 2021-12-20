@@ -158,7 +158,7 @@ function SendExam() {
                         Link para o PDF
                         <input
                             placeholder="Ex: www.website.com/provas/prova.pdf"
-                            type="text"
+                            type="url"
                             value={formData.link}
                             onChange={(e) =>
                                 setFormData({

@@ -17,3 +17,11 @@ export interface ExamSubmit {
     subjectId: number;
     teacherId: number;
 }
+
+export interface ExamTypes {
+    P1: Exam[];
+    P2: Exam[];
+    P3: Exam[];
+    others: Exam[];
+    ch: Exam[];
+}

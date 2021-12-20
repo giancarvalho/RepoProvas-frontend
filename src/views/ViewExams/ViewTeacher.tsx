@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getExamsByTeacher } from "../../services/service";
-import { PageContainer } from "../../components/containers/PageContainer";
+import {
+    InnerContainer,
+    PageContainer,
+} from "../../components/containers/PageContainer";
 import Type from "./TypeList";
 import { Exam } from "../../protocols/exams.interface";
-import styled from "styled-components";
+import { ExamSection } from "../../components/containers/ExamSection";
+import { ExamTypes } from "../../protocols/exams.interface";
 
 interface TeacherId {
     teacherId: string;
@@ -17,7 +21,7 @@ function ViewTeacher() {
         P3: [],
         ch: [],
         others: [],
-    };
+    } as ExamTypes;
 
     const teacher: TeacherId = useParams();
     const [exams, setExams] = useState<any>(examsTypes);
@@ -73,13 +77,3 @@ function ViewTeacher() {
 }
 
 export default ViewTeacher;
-
-const InnerContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const ExamSection = styled.div`
-    display: flex;
-    justify-content: space-around;
-`;
