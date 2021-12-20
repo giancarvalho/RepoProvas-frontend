@@ -1,0 +1,10 @@
+html {
+    min-height: 100%;
+    display: flex;
+}
+body,
+#root {
+    display: flex;
+    font-family: "Roboto", sans-serif;
+    flex: 1;
+}
